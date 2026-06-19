@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Risques des réseaux sociaux pour les enfants</title>
+    <link rel="stylesheet" href="styleIA.css">
+  </head>
+  <body>
+    <canvas id="stars1"></canvas>
+    <canvas id="stars2"></canvas>
+    <canvas id="stars3"></canvas>
+
+    <nav>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <div class="liens">
+      <ul>
+        <li><a href="coord.html">Me contacter</a></li>
+        <li><a href="cv.pdf" download>Mon CV</a></li>
+      </ul>
+    </div>
+
+    <div class="menu" id="menu">
+      <a href="indexIA.html">Accueil</a>
+      <a href="apropos.html">À propos</a>
+      <a href="coord.html">Contact</a>
+        <a href="projets.html">Projets</a>
+
+    </div>
+
+    <div class="contenu">
+      <h1 class="titre-accueil anime">Risques des réseaux sociaux</h1>
+
+      <div class="projet-carte bloc-texte">
+        <h2>📱 Présentation des risques liés à l'exposition des enfants aux réseaux sociaux</h2>
+        <p><strong>Objectif :</strong> Expliquer comment la mauvaise utilisation des réseaux sociaux
+        par les parents peut avoir des répercussions sur les enfants, et peut pousser au harcèlement
+        ou à d'autres actions malsaines.</p>
+
+        <h3>Actions menées</h3>
+        <ul>
+          <li>🔎 Recherches de cas réels</li>
+          <li>🖥️ Création d'un diaporama</li>
+          <li>🎤 Explication et présentation des enjeux devant plusieurs personnes</li>
+        </ul>
+
+        <h3>Technologies utilisées</h3>
+        <p>Canva, Internet</p>
+      </div>
+
+      <a href="projets.html" class="retour-lien">← Retour aux projets</a>
+    </div>
+
+    <footer>
+      <div class="signature">Oscar Boonen &mdash; BUT R&amp;T 2025-2026</div>
+    </footer>
+
+    <script>
+      function toggleMenu() {
+        document.getElementById("menu").classList.toggle("ouvert");
+        document.getElementById("hamburger").classList.toggle("actif");
+      }
+
+      document.addEventListener('click', (e) => {
+        const menu = document.getElementById('menu');
+        const hamburger = document.getElementById('hamburger');
+        if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+          menu.classList.remove('ouvert');
+          hamburger.classList.remove('actif');
+        }
+      });
+
+      window.addEventListener('scroll', () => {
+        document.body.style.setProperty('--scroll', window.scrollY + 'px');
+        document.getElementById('menu').classList.remove('ouvert');
+        document.getElementById('hamburger').classList.remove('actif');
+      });
+
+      function createStars(canvasId, count, size, speed, scrollFactor) {
+        const canvas = document.getElementById(canvasId);
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight * 2;
+
+        const stars = Array.from({ length: count }, () => ({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          opacity: Math.random(),
+          delta: (Math.random() * 0.005 + 0.002) * speed,
+        }));
+
+        window.addEventListener('scroll', () => {
+          canvas.style.transform = `translateY(${-window.scrollY * scrollFactor}px)`;
+        });
+
+        function draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          stars.forEach(star => {
+            star.opacity += star.delta;
+            if (star.opacity >= 1 || star.opacity <= 0) star.delta *= -1;
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+            ctx.fill();
+          });
+          requestAnimationFrame(draw);
+        }
+
+        draw();
+
+        window.addEventListener('resize', () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight * 2;
+        });
+      }
+
+      createStars('stars1', 1200, 0.7, 1, 0.15);
+      createStars('stars2', 900,  1.0, 2, 0.25);
+      createStars('stars3', 600,  1.4, 3, 0.4);
+    </script>
+  </body>
+</html>

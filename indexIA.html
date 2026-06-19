@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styleIA.css">
+  </head>
+  <body>
+    <canvas id="stars1"></canvas>
+    <canvas id="stars2"></canvas>
+    <canvas id="stars3"></canvas>
+    <nav>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+        </button>
+    </nav>
+    <div class="nav-indicator">
+  <svg width="60" height="320" viewBox="0 0 60 320">
+    <!-- Lignes de constellation -->
+    <line x1="30" y1="20"  x2="18" y2="90"  stroke="rgba(168,196,224,0.2)" stroke-width="1"/>
+    <line x1="18" y1="90"  x2="42" y2="160" stroke="rgba(168,196,224,0.2)" stroke-width="1"/>
+    <line x1="42" y1="160" x2="22" y2="230" stroke="rgba(168,196,224,0.2)" stroke-width="1"/>
+    <line x1="22" y1="230" x2="38" y2="300" stroke="rgba(168,196,224,0.2)" stroke-width="1"/>
+
+    <!-- Petites étoiles décoratives -->
+    <circle cx="10" cy="55"  r="1.5" fill="rgba(168,196,224,0.3)"/>
+    <circle cx="50" cy="125" r="1"   fill="rgba(168,196,224,0.3)"/>
+    <circle cx="8"  cy="195" r="1.5" fill="rgba(168,196,224,0.3)"/>
+    <circle cx="52" cy="265" r="1"   fill="rgba(168,196,224,0.3)"/>
+
+    <!-- Points principaux (cliquables) -->
+    <circle class="point actif" cx="30" cy="20"  r="4" onclick="scrollTo({top:0,behavior:'smooth'})" title="Haut de page"/>
+<circle class="point"       cx="18" cy="90"  r="4" onclick="document.querySelector('h2').scrollIntoView({behavior:'smooth'})" title="À propos"/>
+<circle class="point"       cx="42" cy="160" r="4" onclick="document.querySelectorAll('h2')[1].scrollIntoView({behavior:'smooth'})" title="Objectifs"/>
+<circle class="point"       cx="22" cy="230" r="4" onclick="document.querySelectorAll('h2')[2].scrollIntoView({behavior:'smooth'})" title="Compétences"/>
+<circle class="point"       cx="38" cy="300" r="4" onclick="scrollTo({top:document.body.scrollHeight,behavior:'smooth'})" title="Bas de page"/>
+</svg>
+</div>
+    <div class="liens">
+      <ul>
+        <li><a href="coord.html">Me contacter</a></li>
+        <li><a href="cv.pdf" download>Mon CV</a></li>
+      </ul>
+    </div>
+
+    <div class="menu" id="menu">
+      <a href="index.html">Accueil</a>
+      <a href="#">À propos</a>
+      <a href="coord.html">Contact</a>
+        <a href="projets.html">Projets</a>
+    </div>
+
+    <div class="contenu">
+  <h1 class="titre-accueil anime">Bienvenue sur mon portfolio</h1>
+  <div class="scene-photo-wrap anime">
+    <img class="photo-perso" src="detourr.png" alt="Photo de profil">
+    <img class="telescope" src="telescope-clean.png" alt="Télescope">
+
+    <div class="planetes-wrap">
+  <a href="projets.html" class="planet-img-link" id="planete-projets" style="top: 10px; left: 30px;">
+    <img src="jaune.png" alt="Projets">
+    <span class="planet-label-img">Projets</span>
+  </a>
+
+  <a href="apropos.html" class="planet-img-link" id="planete-apropos" style="top: 130px; left: 100px;">
+  <img src="bleue.png" alt="À propos">
+  <span class="planet-label-img">À propos</span>
+</a>
+
+  <a href="coord.html" class="planet-img-link" id="planete-contact" style="top: 180px; left: 20px;">
+    <img src="rouge.png" alt="Contact">
+    <span class="planet-label-img">Contact</span>
+  </a>
+</div>
+  </div>
+
+  <h2 class="bloc-texte">👋 À propos de moi</h2>
+  <p class="bloc-texte">Enchanté, moi c'est <strong>Oscar Boonen</strong>, étudiant en BUT 1 de Réseaux & Télécommunications.
+  Je suis passionné par la gestion de réseaux, le développement logiciel et l'astronomie,
+  et cherche toujours à relever des défis toujours plus ambitieux (allez voir mes projets !).</p>
+
+  <h2 class="bloc-texte">🎯 Mes Objectifs</h2><br>
+  <h3 class="bloc-texte">À court terme</h3>
+  <p class="bloc-texte">Valider mon BUT 2, puis intégrer une école d'ingénieur pour approfondir mes compétences
+  et découvrir de nouvelles expériences.</p>
+  <h3 class="bloc-texte">À long terme</h3>
+  <p class="bloc-texte">Devenir ingénieur en Réseaux & Cybersécurité, capable de concevoir et superviser
+  des infrastructures réseau d'entreprise de grande envergure.</p>
+
+  <h2 class="bloc-texte">🛠️ Mes Compétences</h2>
+
+  <h3 class="bloc-texte">📡 Réseaux & Télécommunications</h3>
+  <ul>
+    <li class="bloc-texte">⚙️ Configuration d'adressage IP et mise en réseau de postes</li>
+    <li class="bloc-texte">🔍 Analyse de trafic avec <strong>Wireshark</strong></li>
+    <li class="bloc-texte">🖧 Configuration d'équipements Cisco : VLAN, NAT, STP <em>(Cisco Packet Tracer)</em></li>
+    <li class="bloc-texte">🔌 Notions de câblage et supports physiques</li>
+  </ul>
+
+  <h3 class="bloc-texte">💻 Systèmes & Programmation</h3>
+  <ul>
+    <li class="bloc-texte">🐧 Administration Linux et scripting Bash</li>
+    <li class="bloc-texte">🧑‍💻 Programmation : C, Java, Python</li>
+    <li class="bloc-texte">🌐 Développement web : HTML, CSS, PHP</li>
+    <li class="bloc-texte">🧠 Algorithmique</li>
+  </ul>
+
+  <h3 class="bloc-texte">📋 Méthodes & Outils</h3>
+  <ul>
+    <li class="bloc-texte">🤝 Gestion de projet technique en équipe</li>
+    <li class="bloc-texte">🔐 Sensibilisé à la cybersécurité</li>
+    <li class="bloc-texte">🇬🇧 Anglais technique professionnel</li>
+  </ul>
+</div>
+<div class="scroll-hint">
+      <span>↓</span>
+      Découvrir
+      </div>
+
+    <footer>
+      <div class="signature">Oscar Boonen &mdash; BUT R&amp;T 2025-2026</div>
+    </footer>
+    <script>
+      function toggleMenu() {
+  document.getElementById("menu").classList.toggle("ouvert");
+  document.getElementById("hamburger").classList.toggle("actif");
+}
+
+document.addEventListener('click', (e) => {
+  const menu = document.getElementById('menu');
+  const hamburger = document.getElementById('hamburger');
+  if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+    menu.classList.remove('ouvert');
+    hamburger.classList.remove('actif');
+  }
+});
+
+window.addEventListener('scroll', () => {
+  document.body.style.setProperty('--scroll', window.scrollY + 'px');
+  document.getElementById('menu').classList.remove('ouvert');
+  document.getElementById('hamburger').classList.remove('actif');
+
+  const hint = document.querySelector('.scroll-hint');
+  if (hint) {
+    if (window.scrollY > 10) {
+      hint.classList.remove('visible');
+      hint.style.opacity = '0';
+    } else {
+      hint.classList.add('visible');
+      hint.style.opacity = '';
+    }
+  }
+
+  const points = document.querySelectorAll('.nav-indicator .point');
+const sections = document.querySelectorAll('h2');
+let current = 0;
+if (window.scrollY < 100) {
+  current = 0;
+} else if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 10) {
+  current = 4;
+} else {
+  sections.forEach((s, i) => {
+    if (window.scrollY >= s.offsetTop - 200) current = i + 1;
+  });
+}
+points.forEach((p, i) => p.classList.toggle('actif', i === current));
+});
+
+document.querySelector('.scroll-hint').classList.add('visible');
+      // Étoiles
+      function createStars(canvasId, count, size, speed, scrollFactor) {
+  const canvas = document.getElementById(canvasId);
+  const ctx = canvas.getContext('2d');
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight * 2;
+
+  const stars = Array.from({ length: count }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    opacity: Math.random(),
+    delta: (Math.random() * 0.005 + 0.002) * speed,
+  }));
+
+  let scrollY = 0;
+
+  window.addEventListener('scroll', () => {
+    scrollY = window.scrollY;
+    canvas.style.transform = `translateY(${-scrollY * scrollFactor}px)`;
+  });
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(star => {
+      star.opacity += star.delta;
+      if (star.opacity >= 1 || star.opacity <= 0) star.delta *= -1;
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight * 2;
+  });
+}
+
+createStars('stars1', 1200, 0.7, 1, 0.15);
+createStars('stars2', 900,  1.0, 2, 0.25);
+createStars('stars3', 600,  1.4, 3, 0.4);
+function etoileFilante() {
+  const canvas = document.createElement('canvas');
+  canvas.style.position = 'fixed';
+  canvas.style.top = '0';
+  canvas.style.left = '0';
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
+  canvas.style.pointerEvents = 'none';
+  canvas.style.zIndex = '1';
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  document.body.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+  const startX = Math.random() * window.innerWidth * 0.7;
+  const startY = Math.random() * window.innerHeight * 0.4;
+  const length = 180 + Math.random() * 100;
+  const angle = Math.PI / 5;
+  const duration = 800;
+  const start = performance.now();
+
+  function draw(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const x = startX + Math.cos(angle) * length * progress;
+    const y = startY + Math.sin(angle) * length * progress;
+    const tailX = startX + Math.cos(angle) * Math.max(0, length * progress - 80);
+    const tailY = startY + Math.sin(angle) * Math.max(0, length * progress - 80);
+
+    const grad = ctx.createLinearGradient(tailX, tailY, x, y);
+    grad.addColorStop(0, 'rgba(255,255,255,0)');
+    grad.addColorStop(1, `rgba(255,255,255,${1 - progress})`);
+
+    ctx.beginPath();
+    ctx.moveTo(tailX, tailY);
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    if (progress < 1) {
+      requestAnimationFrame(draw);
+    } else {
+      document.body.removeChild(canvas);
+    }
+  }
+
+  requestAnimationFrame(draw);
+}
+
+etoileFilante();
+setInterval(etoileFilante, 8000);
+    </script>
+  </body>
+</html>

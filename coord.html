@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <link rel="stylesheet" href="styleIA.css">
+  </head>
+  <body>
+    <canvas id="stars1"></canvas>
+    <canvas id="stars2"></canvas>
+    <canvas id="stars3"></canvas>
+
+    <nav>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <div class="liens">
+      <ul>
+        <li><a href="coord.html">Me contacter</a></li>
+        <li><a href="cv.pdf" download>Mon CV</a></li>
+      </ul>
+    </div>
+
+    <div class="menu" id="menu">
+      <a href="indexIA.html">Accueil</a>
+      <a href="apropos.html">À propos</a>
+      <a href="projets.html">Projets</a>
+      <a href="coord.html">Contact</a>
+    </div>
+
+    <div class="contenu">
+      <h1 class="titre-accueil anime">Me contacter</h1>
+
+      <div class="contact-grid">
+        <a href="mailto:oscar.boonen@etu.unice.fr" class="contact-carte bloc-texte">
+          <span class="contact-icone">✉️</span>
+          <span class="contact-label">Email</span>
+          <span class="contact-valeur">oscar.boonen@etu.unice.fr</span>
+        </a>
+
+        <a href="tel:0749092427" class="contact-carte bloc-texte">
+          <span class="contact-icone">📞</span>
+          <span class="contact-label">Téléphone</span>
+          <span class="contact-valeur">07 49 09 24 27</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/oscar-boonen-2456093b6/" target="_blank" class="contact-carte bloc-texte">
+          <span class="contact-icone">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </span>
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-valeur">Oscar Boonen</span>
+        </a>
+
+        <div class="contact-carte bloc-texte contact-statique">
+          <span class="contact-icone">📍</span>
+          <span class="contact-label">Localisation</span>
+          <span class="contact-valeur">Valbonne, France</span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="signature">Oscar Boonen &mdash; BUT R&amp;T 2025-2026</div>
+    </footer>
+
+    <script>
+      function toggleMenu() {
+        document.getElementById("menu").classList.toggle("ouvert");
+        document.getElementById("hamburger").classList.toggle("actif");
+      }
+
+      document.addEventListener('click', (e) => {
+        const menu = document.getElementById('menu');
+        const hamburger = document.getElementById('hamburger');
+        if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+          menu.classList.remove('ouvert');
+          hamburger.classList.remove('actif');
+        }
+      });
+
+      window.addEventListener('scroll', () => {
+        document.body.style.setProperty('--scroll', window.scrollY + 'px');
+        document.getElementById('menu').classList.remove('ouvert');
+        document.getElementById('hamburger').classList.remove('actif');
+      });
+
+      function createStars(canvasId, count, size, speed, scrollFactor) {
+        const canvas = document.getElementById(canvasId);
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight * 2;
+
+        const stars = Array.from({ length: count }, () => ({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          opacity: Math.random(),
+          delta: (Math.random() * 0.005 + 0.002) * speed,
+        }));
+
+        window.addEventListener('scroll', () => {
+          canvas.style.transform = `translateY(${-window.scrollY * scrollFactor}px)`;
+        });
+
+        function draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          stars.forEach(star => {
+            star.opacity += star.delta;
+            if (star.opacity >= 1 || star.opacity <= 0) star.delta *= -1;
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+            ctx.fill();
+          });
+          requestAnimationFrame(draw);
+        }
+
+        draw();
+
+        window.addEventListener('resize', () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight * 2;
+        });
+      }
+
+      createStars('stars1', 1200, 0.7, 1, 0.15);
+      createStars('stars2', 900,  1.0, 2, 0.25);
+      createStars('stars3', 600,  1.4, 3, 0.4);
+    </script>
+  </body>
+</html>
